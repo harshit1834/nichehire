@@ -273,6 +273,18 @@ export default function JobCardItem({
             <span>{tailor?.loading ? 'Tailoring…' : 'Tailor CV'}</span>
           </button>
 
+          {/* Co-Pilot Assisted Apply */}
+          {job.url && job.url !== '#' && (
+            <a
+              href={`/copilot?url=${encodeURIComponent(job.url)}`}
+              className="px-3 py-1.5 text-xs font-semibold text-[#0284c7] bg-[#f0f9ff] hover:bg-[#e0f2fe] border border-[#bae6fd] rounded transition-colors whitespace-nowrap flex items-center gap-1"
+              title="Apply with NicheHire Co-Pilot (Autofill & Speech Assistant)"
+            >
+              <Sparkles size={ICON_SIZES.inline} strokeWidth={ICON_STROKE_WIDTH} className="text-[#0284c7]" />
+              <span>Co-Pilot</span>
+            </a>
+          )}
+
           {/* Direct Apply CTA */}
           <a
             href={job.url || '#'}

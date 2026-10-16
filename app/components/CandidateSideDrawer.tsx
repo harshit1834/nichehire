@@ -515,16 +515,28 @@ export default function CandidateSideDrawer({
                           {job.salary && <span>{job.salary}</span>}
                         </div>
 
-                        <div className="pt-2 border-t border-[#E4E7EC] flex items-center justify-between">
-                          <a
-                            href={job.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[11px] font-semibold text-[#2B4EE6] hover:underline inline-flex items-center gap-1"
-                          >
-                            <span>Apply on Career Portal</span>
-                            <ExternalLink size={11} strokeWidth={ICON_STROKE_WIDTH} />
-                          </a>
+                        <div className="pt-2 border-t border-[#E4E7EC] flex items-center justify-between flex-wrap gap-2">
+                          <div className="flex items-center gap-2">
+                            {job.url && job.url !== '#' && (
+                              <a
+                                href={`/copilot?url=${encodeURIComponent(job.url)}`}
+                                className="text-[11px] font-semibold text-[#0284c7] bg-[#f0f9ff] hover:bg-[#e0f2fe] border border-[#bae6fd] px-2 py-0.5 rounded inline-flex items-center gap-1 transition-colors"
+                                title="Autofill form with NicheHire Co-Pilot"
+                              >
+                                <Sparkles size={11} strokeWidth={ICON_STROKE_WIDTH} className="text-[#0284c7]" />
+                                <span>Co-Pilot</span>
+                              </a>
+                            )}
+                            <a
+                              href={job.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[11px] font-semibold text-[#2B4EE6] hover:underline inline-flex items-center gap-1"
+                            >
+                              <span>Apply Direct</span>
+                              <ExternalLink size={11} strokeWidth={ICON_STROKE_WIDTH} />
+                            </a>
+                          </div>
 
                           <button
                             onClick={() => {
