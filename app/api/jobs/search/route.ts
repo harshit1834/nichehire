@@ -11,7 +11,7 @@ import {
 import { detectGovtCrossPortalSuggestion } from '../../../lib/govtCrossPortal';
 import { verifyJob } from '../../../lib/verifyJob';
 
-const FETCH_TIMEOUT_MS = 14000;
+const FETCH_TIMEOUT_MS = 8000;
 
 
 async function fetchWithTimeout(url: string, options: RequestInit = {}, timeoutMs = FETCH_TIMEOUT_MS) {
@@ -1419,6 +1419,7 @@ export async function POST(req: Request) {
           };
         });
       } catch (e) {
+        failedSources.push('Jobicy');
         return [];
       }
     }
@@ -1463,11 +1464,10 @@ export async function POST(req: Request) {
             };
           });
       } catch (e) {
+        failedSources.push('The Muse');
         return [];
       }
     }
-
-    // --- EXECUTE ALL 12 SOURCES IN PARALLEL ---
     const sourceResults = await Promise.allSettled([
       fetchAdzuna(),
       fetchHimalayas(),
